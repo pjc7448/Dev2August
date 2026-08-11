@@ -70,21 +70,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         GunPivot.rotation = Quaternion.Lerp(GunPivot.rotation, rot, GunRotationSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int amount)
-    {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-            GameManager.Instance.UpdateGameGoal(-1);
-            Destroy(gameObject);
-        }
-        else
-        {
-            StartCoroutine(FlashRed());
-        }
-    }
-
     IEnumerator FlashRed()
     {
         model.material.color = Color.red;

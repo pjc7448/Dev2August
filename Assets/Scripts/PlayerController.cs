@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IHeal
 {
     [SerializeField] CharacterController controller;
 
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
 
     int jumpCount;
-    int HPOrignal;
+    int HPOriginal;
 
     float shootTimer;
 
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        HPOrignal = HP;     // when dies, hp is reset back to orignal
+        HPOriginal = HP;     // when dies, hp is reset back to orignal
         UpdatePlayerUI();
 
     }
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVelocity.y = 0;
         }
 
-        moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+        moveDirection = Input.GetAxisRaw("Horizontal") * transform.right + Input.GetAxisRaw("Vertical") * transform.forward;
         controller.Move(moveDirection.normalized * Speed * Time.deltaTime);
 
         Jump();
@@ -116,19 +116,40 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdatePlayerUI()
     {
-        GameManager.Instance.playerHPBar.fillAmount = (float) HP / HPOrignal;
+        GameManager.Instance.playerHPBar.fillAmount = (float) HP / HPOriginal;
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
+        IHeal heal = GetComponent<IHeal>();
+
+        if(heal != null)
+        {
+            
+        }
         UpdatePlayerUI();
         StartCoroutine(FlashDamage());
-
+       
         if (HP <= 0)
         {
             GameManager.Instance.youLose();
         }
+    }
+    public void heal(int amount)
+    {
+        HP += amount;
+
+        if (HP > HPOriginal)
+        {
+            HP = HPOriginal;
+        }
+
+        UpdatePlayerUI();
+    }
+    public bool isFullHealth()
+    {
+        return HP >= HPOriginal;
     }
 }
 

@@ -11,13 +11,14 @@ public class Heal : MonoBehaviour
     [SerializeField] float healRate;
     [SerializeField] int healDelay;
 
+    IHeal healTarget;
     float healTimer;
     int healthOrig;
     bool isHealing;
 
     void Start()
     {
-        
+        healTarget = GetComponent<IHeal>();
     }
 
     void Update()
@@ -29,6 +30,7 @@ public class Heal : MonoBehaviour
             if(healTimer >= healDelay)
             {
                 isHealing = true;
+                StartCoroutine(startHealing());
             }
         }
     }
@@ -40,17 +42,20 @@ public class Heal : MonoBehaviour
         healTimer = 0;
     }
 
-    public void beginHealing(IHeal h)
-    {
-        StartCoroutine(startHealing(h));
-    }
-
-    IEnumerator startHealing(IHeal h)
+    IEnumerator startHealing()
     {
         while (isHealing)
         {
-            h.heal(healAmount);
+            if (healTarget.isFullHealth())
+            {
+                isHealing = false;
+                yield break;
+            }
+            healTarget.heal(healAmount);
+
             yield return new WaitForSeconds(healRate);
         }
     }
+
+
 }
