@@ -1,39 +1,53 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Damage : MonoBehaviour
 {
-    enum damageType { bullet, stationary, DOT }
 
-    [SerializeField] damageType type;
+    enum DamageType { Bullet, Stationary, DOT };
+    [SerializeField] DamageType type;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int bulletSpeed;
     [SerializeField] int bulletDestroyTime;
+    [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (type == damageType.bullet)
+        if (type == DamageType.Bullet)
         {
             rb.linearVelocity = transform.forward * bulletSpeed;
             Destroy(gameObject, bulletDestroyTime);
+
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.isTrigger)
+        if (other.isTrigger)
         {
             return;
         }
+
         IDamage dmg = other.GetComponent<IDamage>();
-        if(dmg != null && type != damageType.DOT)
+        if (dmg != null && type != DamageType.DOT)
         {
             dmg.takeDamage(damageAmount);
+        }
+
+        if (type == DamageType.Bullet)
+        {
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+            }
+
+            Destroy(gameObject);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -42,14 +56,15 @@ public class Damage : MonoBehaviour
         {
             return;
         }
+
         IDamage dmg = other.GetComponent<IDamage>();
-        if(dmg != null && type == damageType.DOT && !isDamaging)
+        if (dmg != null && type == DamageType.DOT && !isDamaging)
         {
             StartCoroutine(damageOther(dmg));
-        }
 
+        }
     }
-   
+
     IEnumerator damageOther(IDamage d)
     {
         isDamaging = true;
@@ -58,3 +73,4 @@ public class Damage : MonoBehaviour
         isDamaging = false;
     }
 }
+
