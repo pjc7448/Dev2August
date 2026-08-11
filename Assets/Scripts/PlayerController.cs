@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
+    // The players Weapon
+    [SerializeField] WeaponBehavior Weapon;
+
     [Range(1, 10)][SerializeField] int HP;
     [Range(1, 6)][SerializeField] int Speed;
     [Range(2, 5)][SerializeField] int sprintMod;
@@ -12,17 +15,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(15, 40)][SerializeField] int gravity;
 
-    [Range(1, 10)][SerializeField] int ShootDamage;
-    [Range(3, 1000)][SerializeField] int ShootDist;
-    [Range(0.1f, 2)][SerializeField] float ShootRate;
-
     [SerializeField] LayerMask IgnoreLayer;
 
 
     int jumpCount;
     int HPOrignal;
-
-    float shootTimer;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -45,10 +42,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void movement()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * ShootDist, Color.blue);
-
-        shootTimer += Time.deltaTime;
-
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -62,9 +55,9 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.Move(playerVelocity * Time.deltaTime);
         playerVelocity.y -= gravity * Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1") && shootTimer > ShootRate)
+        if (Input.GetButtonDown("Fire1"))
         {
-            shoot();
+            Weapon.Shoot();
         }
     }
 
@@ -88,22 +81,6 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVelocity.y = jumpSpeed;
 
 
-        }
-    }
-
-    void shoot()
-    {
-        shootTimer = 0;
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, ShootDist, ~IgnoreLayer))
-        {
-            Debug.Log(hit.collider.name);
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
-            {
-                dmg.takeDamage(ShootDamage);
-            }
         }
     }
 
