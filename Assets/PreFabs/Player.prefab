@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7862221392947767506}
   - component: {fileID: 4266044095297166183}
   - component: {fileID: 2018299271146335572}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: R Chamb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 3859014961979732525}
   - component: {fileID: 1304915406792138618}
   - component: {fileID: 5322529197829264982}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8158,7 +8158,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1662
+  m_VersionIndex: 1683
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8284,7 +8284,7 @@ GameObject:
   - component: {fileID: 2439546485892136638}
   - component: {fileID: 7323685829973225406}
   - component: {fileID: 5740862699672707504}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16018,7 +16018,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1662
+  m_VersionIndex: 1683
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -16142,7 +16142,7 @@ GameObject:
   - component: {fileID: 3134078699610441223}
   - component: {fileID: 8154654753115382273}
   - component: {fileID: 2998735920374471524}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: L Chamb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16256,7 +16256,7 @@ GameObject:
   - component: {fileID: 4081223957639156428}
   - component: {fileID: 1752350591641989345}
   - component: {fileID: 799425779622633759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front Site
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16371,7 +16371,7 @@ GameObject:
   - component: {fileID: 2661520388055234706}
   - component: {fileID: 1634067751800842835}
   - component: {fileID: 3837255263377325062}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Shotgun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -16408,7 +16408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
-  Bullet: {fileID: 5042787213808573991, guid: 6c61f2e5878da0f4db7f68893e42ee6c, type: 3}
+  Bullet: {fileID: 5042787213808573991, guid: aad5e3ca18f37734c910eb058ed31604, type: 3}
   ShootPosition: {fileID: 6393640852354853084}
   ShootRate: 1.2
   BulletCount: 5
@@ -16627,7 +16627,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 107
+  m_VersionIndex: 128
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -16747,7 +16747,7 @@ GameObject:
   - component: {fileID: 2772653942586841446}
   - component: {fileID: 3549929844764394708}
   - component: {fileID: 6602938906093078856}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16858,7 +16858,7 @@ GameObject:
   - component: {fileID: 6393640852354853084}
   - component: {fileID: 3958322673088585053}
   - component: {fileID: 5572740869043291317}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Bullet Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16949,7 +16949,7 @@ GameObject:
   - component: {fileID: 2258209757803863105}
   - component: {fileID: 6951342504675317980}
   - component: {fileID: 3958327938094220929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
