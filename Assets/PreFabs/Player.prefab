@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774973790495875335}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04274756, y: 0.000000029802322, z: -0.000000006519258, w: 0.99908596}
-  m_LocalPosition: {x: -0.0000004246831, y: 0.61, z: 0.109000385}
+  m_LocalRotation: {x: 0.6532815, y: -0.27059805, z: 0.27059805, w: 0.6532815}
+  m_LocalPosition: {x: 0, y: 12.336307, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 335125078135063013}
-  m_LocalEulerAnglesHint: {x: 4.9, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 45}
 --- !u!114 &7771053955885262467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,8 @@ GameObject:
   m_Component:
   - component: {fileID: 335125078135063013}
   - component: {fileID: 2077911476504390312}
+  - component: {fileID: 7050283690122876484}
+  - component: {fileID: 6151791779703397339}
   - component: {fileID: 3964660160684178821}
   - component: {fileID: 4146068690063356722}
   - component: {fileID: 2372007141426027360}
@@ -214,6 +216,41 @@ MonoBehaviour:
   IgnoreLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &7050283690122876484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3054113165813310725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a811983a300a30748b1be6dd6fe9863a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damage
+  type: 0
+  rb: {fileID: 0}
+  damageAmount: 0
+  damageRate: 0
+  bulletSpeed: 0
+  bulletDestroyTime: 0
+  hitEffect: {fileID: 0}
+--- !u!114 &6151791779703397339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3054113165813310725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413ff96d3d0cbf447a5e8fd9049dc374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Heal
+  type: 0
+  healAmount: 1
+  healRate: 1
+  healDelay: 5
 --- !u!143 &3964660160684178821
 CharacterController:
   m_ObjectHideFlags: 0
