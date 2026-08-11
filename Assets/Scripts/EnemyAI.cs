@@ -20,6 +20,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform ShootPosition;
     [SerializeField] float ShootRate;
     [SerializeField] int GunRotationSpeed;
+    [SerializeField] float BulletSpeed;
+    [SerializeField] float BulletDecay;
 
     Color colorOrig;
 
@@ -95,7 +97,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Shoot()
     {
         ShootTimer = 0;
-        Instantiate(Bullet, ShootPosition.position, ShootPosition.rotation);
+
+        GameObject GunBullet = Instantiate(Bullet, ShootPosition.position, ShootPosition.rotation);
+
+        Rigidbody rb = GunBullet.GetComponent<Rigidbody>();
+
+        rb.linearVelocity = GunBullet.transform.forward * BulletSpeed;
+
+        Destroy(GunBullet, BulletDecay);
     }
 
     void OnTriggerEnter(Collider other)

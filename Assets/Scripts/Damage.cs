@@ -19,6 +19,8 @@ public class Damage : MonoBehaviour
         {
             return;
         }
+        Debug.Log("Bullet hit: " + other.name +
+             " | Layer: " + LayerMask.LayerToName(other.gameObject.layer));
 
         IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null && type != DamageType.DOT)

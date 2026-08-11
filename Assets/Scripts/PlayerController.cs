@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
 
     int jumpCount;
-    int HPOrignal;
+    int HPOriginal;
 
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        HPOrignal = HP;     // when dies, hp is reset back to orignal
+        HPOriginal = HP;     // when dies, hp is reset back to orignal
         UpdatePlayerUI();
 
     }
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdatePlayerUI()
     {
-        GameManager.Instance.playerHPBar.fillAmount = (float) HP / HPOrignal;
+        GameManager.Instance.playerHPBar.fillAmount = (float) HP / HPOriginal;
     }
 
     public void takeDamage(int amount)
