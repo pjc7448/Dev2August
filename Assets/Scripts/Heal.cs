@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Heal : MonoBehaviour
@@ -11,13 +10,13 @@ public class Heal : MonoBehaviour
     [SerializeField] float healRate;
     [SerializeField] int healDelay;
 
+    IHeal healTarget;
     float healTimer;
-    int healthOrig;
     bool isHealing;
 
     void Start()
     {
-        
+        healTarget = GetComponent<IHeal>();
     }
 
     void Update()
@@ -29,6 +28,7 @@ public class Heal : MonoBehaviour
             if(healTimer >= healDelay)
             {
                 isHealing = true;
+                StartCoroutine(startHealing());
             }
         }
     }
@@ -39,18 +39,13 @@ public class Heal : MonoBehaviour
 
         healTimer = 0;
     }
-
-    public void beginHealing(IHeal h)
+    IEnumerator startHealing()
     {
-        StartCoroutine(startHealing(h));
-    }
-
-    IEnumerator startHealing(IHeal h)
-    {
-        while (isHealing)
+        while (!healTarget.isFullHealth() && isHealing)
         {
-            h.heal(healAmount);
+            healTarget.heal(healAmount);
             yield return new WaitForSeconds(healRate);
         }
+        isHealing = false;
     }
 }

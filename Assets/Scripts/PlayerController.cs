@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IHeal
 {
     [SerializeField] CharacterController controller;
 
@@ -10,17 +10,19 @@ public class PlayerController : MonoBehaviour, IDamage
     // The Weapon is a pickup
     [SerializeField] Transform WeaponDir;
 
-    [Range(1, 10)][SerializeField] int HP;
+    [Range(0, 10)][SerializeField] int HP;
     [Range(1, 6)][SerializeField] int Speed;
     [Range(2, 5)][SerializeField] int sprintMod;
-    [Range(8, 20)][SerializeField] int jumpSpeed;
-    [Range(1, 3)][SerializeField] int jumpMax;
-    [Range(15, 40)][SerializeField] int gravity;
+
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+    [SerializeField] float dashCooldown;
+    float dashTimer;
+    bool isDashing;
 
     [SerializeField] LayerMask IgnoreLayer;
 
 
-    int jumpCount;
     int HPOriginal;
 
     Vector3 moveDirection;
@@ -40,24 +42,30 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         movement();
         Sprint();
+
+        dashTimer += Time.deltaTime;
+        if (Input.GetButtonDown("Dash") && dashTimer >= dashCooldown && !isDashing)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     void movement()
     {
-        if (controller.isGrounded)
+        if(isDashing)
         {
-            jumpCount = 0;
-            playerVelocity.y = 0;
+            return;
         }
 
-        moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+        Vector3 cameraForward = Vector3.forward;
+        Vector3 cameraRight = Vector3.right;
+
+        moveDirection = Input.GetAxisRaw("Horizontal") * cameraRight + Input.GetAxisRaw("Vertical") * cameraForward;
         controller.Move(moveDirection.normalized * Speed * Time.deltaTime);
 
-        Jump();
         controller.Move(playerVelocity * Time.deltaTime);
-        playerVelocity.y -= gravity * Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             Weapon.Shoot();
         }
@@ -75,15 +83,26 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void Jump()
+    IEnumerator Dash()
     {
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        isDashing = true;
+        dashTimer = 0;
+
+        Vector3 dashDirection = moveDirection;
+        if(dashDirection == Vector3.zero)
         {
-            jumpCount++;
-            playerVelocity.y = jumpSpeed;
-
-
+            dashDirection = transform.forward;
         }
+        float dashTime = 0;
+
+        while(dashTime < dashDuration)
+        {
+            controller.Move(dashDirection.normalized * dashSpeed * Time.deltaTime);
+
+            dashTime += Time.deltaTime;
+            yield return null;
+        }
+        isDashing = false;
     }
 
     IEnumerator FlashDamage()
@@ -95,12 +114,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdatePlayerUI()
     {
-        GameManager.Instance.playerHPBar.fillAmount = (float) HP / HPOriginal;
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
+
+        Heal heal = GetComponent<Heal>();
+        if(heal != null)
+        {
+            heal.damageTaken();
+        }
         UpdatePlayerUI();
         StartCoroutine(FlashDamage());
 
@@ -129,6 +153,20 @@ public class PlayerController : MonoBehaviour, IDamage
             Debug.Log("WEAPON FOUND: " + newWeapon.name);
             EquipWeapon(newWeapon);
         }
+    }
+
+    public void heal(int amount)
+    {
+        HP += amount;
+        if(HP > HPOriginal)
+        {
+            HP = HPOriginal;
+        }
+        UpdatePlayerUI();
+    }
+    public bool isFullHealth()
+    {
+        return HP >= HPOriginal;
     }
 }
 
