@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     {
         movement();
         Sprint();
+        FaceMouse();
 
         dashTimer += Time.deltaTime;
         if (Input.GetButtonDown("Dash") && dashTimer >= dashCooldown && !isDashing)
@@ -146,17 +147,21 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         newWeapon.transform.localPosition = Vector3.zero;
         newWeapon.transform.localRotation = Quaternion.identity;
 
+        // delete the collider to prevent the weapon from despawning (the player has the collider inside them and deletes it again)
+        Transform rangecollider = newWeapon.transform.Find("PickupRange");
+
+        if (rangecollider != null)
+        {
+            Destroy(rangecollider.gameObject);
+        }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        // to see if the gun gets picked up
-        Debug.Log("TRIGGER: " + other.name);
-
         WeaponBehavior newWeapon = other.GetComponentInParent<WeaponBehavior>();
 
         if (newWeapon != null)
         {
-            Debug.Log("WEAPON FOUND: " + newWeapon.name);
             EquipWeapon(newWeapon);
         }
     }
@@ -173,6 +178,26 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     public bool isFullHealth()
     {
         return HP >= HPOriginal;
+    }
+
+    void FaceMouse()
+    {
+        // a ray will shoot from the camera to the mouse on screen.
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit mouse, 1000f))
+        {
+            // this gets the players direction to face the mouse
+
+            Vector3 Direction = mouse.point - transform.position;
+
+            Direction.y = 0;
+
+            if (Direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(Direction);
+            }
+        }
     }
 }
 
