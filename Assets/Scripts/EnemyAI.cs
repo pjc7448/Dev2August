@@ -72,21 +72,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         GunPivot.rotation = Quaternion.Lerp(GunPivot.rotation, rot, GunRotationSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int amount)
-    {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-            GameManager.Instance.UpdateGameGoal(-1);
-            Destroy(gameObject);
-        }
-        else
-        {
-            StartCoroutine(FlashRed());
-        }
-    }
-
     IEnumerator FlashRed()
     {
         model.material.color = Color.red;
@@ -96,15 +81,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Shoot()
     {
+
         ShootTimer = 0;
 
-        GameObject GunBullet = Instantiate(Bullet, ShootPosition.position, ShootPosition.rotation);
-
-        Rigidbody rb = GunBullet.GetComponent<Rigidbody>();
-
-        rb.linearVelocity = GunBullet.transform.forward * BulletSpeed;
-
-        Destroy(GunBullet, BulletDecay);
+        Instantiate(
+            Bullet,
+            ShootPosition.position,
+            ShootPosition.rotation
+        );
     }
 
     void OnTriggerEnter(Collider other)
@@ -125,6 +109,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+
         HP -= amount;
 
         if (HP <= 0)

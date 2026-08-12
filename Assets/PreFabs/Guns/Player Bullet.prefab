@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   type: 0
+  rb: {fileID: 1807062651520766999}
   damageAmount: 1
-  damageRate: 0
+  damageRate: 0.8
+  bulletSpeed: 30
+  bulletDestroyTime: 3
   hitEffect: {fileID: 0}
 --- !u!135 &4341753595737335658
 SphereCollider:
