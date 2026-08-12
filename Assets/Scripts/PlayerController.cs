@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     // The players Weapon
     [SerializeField] WeaponBehavior Weapon;
 
-    [Range(1, 10)][SerializeField] int HP;
+    [Range(0, 10)][SerializeField] int HP;
     [Range(1, 6)][SerializeField] int Speed;
     [Range(2, 5)][SerializeField] int sprintMod;
     [Range(8, 20)][SerializeField] int jumpSpeed;
