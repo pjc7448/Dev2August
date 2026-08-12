@@ -6,12 +6,28 @@ public class Damage : MonoBehaviour
 
     enum DamageType { Bullet, Stationary, DOT };
     [SerializeField] DamageType type;
+    [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
+    [SerializeField] int bulletSpeed;
+    [SerializeField] int bulletDestroyTime;
     [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb.GetComponent<Rigidbody>();
+
+        if (type == DamageType.Bullet)
+        {
+            rb.linearVelocity = transform.forward * bulletSpeed;
+            Destroy(gameObject, bulletDestroyTime);
+
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,8 +35,6 @@ public class Damage : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Bullet hit: " + other.name +
-             " | Layer: " + LayerMask.LayerToName(other.gameObject.layer));
 
         IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null && type != DamageType.DOT)
