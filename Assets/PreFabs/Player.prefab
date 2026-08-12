@@ -60,7 +60,6 @@ GameObject:
   m_Component:
   - component: {fileID: 335125078135063013}
   - component: {fileID: 2077911476504390312}
-  - component: {fileID: 2856779324741248891}
   - component: {fileID: -6287643827968497683}
   - component: {fileID: 3964660160684178821}
   - component: {fileID: 4146068690063356722}
@@ -101,35 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   controller: {fileID: 3964660160684178821}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 9054628664992359195}
   HP: 10
   Speed: 5
   sprintMod: 2
-  jumpSpeed: 8
-  jumpMax: 2
-  gravity: 20
+  dashSpeed: 20
+  dashDuration: 0.35
+  dashCooldown: 0.75
   IgnoreLayer:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &2856779324741248891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3054113165813310725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a811983a300a30748b1be6dd6fe9863a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Damage
-  type: 0
-  rb: {fileID: 7316612942746958596, guid: 2317a5252ae69844bb2d778262012b8d, type: 3}
-  damageAmount: 0
-  damageRate: 0
-  bulletSpeed: 0
-  bulletDestroyTime: 0
-  hitEffect: {fileID: 0}
 --- !u!114 &-6287643827968497683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 8227327458922304400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

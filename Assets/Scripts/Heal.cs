@@ -41,15 +41,11 @@ public class Heal : MonoBehaviour
     }
     IEnumerator startHealing()
     {
-        while (isHealing)
+        while (!healTarget.isFullHealth() && isHealing)
         {
-            if(healTarget.isFullHealth())
-            {
-                isHealing = false;
-                yield break;
-            }
             healTarget.heal(healAmount);
             yield return new WaitForSeconds(healRate);
         }
+        isHealing = false;
     }
 }
