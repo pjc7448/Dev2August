@@ -24,21 +24,8 @@ public class WeaponBehavior : MonoBehaviour
     {
         if (ShootTimer >= ShootRate)
         {
-            // this is so weapons shoot at the players retical, this will be changed when we implement the top down camera (or removed)
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Vector3 direction = ShootPosition.forward;
 
-            Vector3 CrossHair;
-
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
-            {
-                CrossHair = hit.point;
-            }
-            else
-            {
-                CrossHair = ray.origin + ray.direction * 1000f;
-            }
-
-            Vector3 direction = (CrossHair - ShootPosition.position).normalized;
             ShootTimer = 0; // reset the timer
 
             for (int i = 0; i < BulletCount; i++)
