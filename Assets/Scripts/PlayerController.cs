@@ -135,11 +135,17 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     }
     public void EquipWeapon(WeaponBehavior newWeapon)
     {
+        if (Weapon != null)
+        {
+            Destroy(Weapon.gameObject);
+        }
+
         Weapon = newWeapon;
 
         newWeapon.transform.SetParent(WeaponDir);
         newWeapon.transform.localPosition = Vector3.zero;
         newWeapon.transform.localRotation = Quaternion.identity;
+
     }
     private void OnTriggerEnter(Collider other)
     {
