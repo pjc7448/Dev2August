@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     // The players Weapon
     [SerializeField] WeaponBehavior Weapon;
+    // The Weapon is a pickup
+    [SerializeField] Transform WeaponDir;
 
     [Range(1, 10)][SerializeField] int HP;
     [Range(1, 6)][SerializeField] int Speed;
@@ -105,6 +107,27 @@ public class PlayerController : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             GameManager.Instance.youLose();
+        }
+    }
+    public void EquipWeapon(WeaponBehavior newWeapon)
+    {
+        Weapon = newWeapon;
+
+        newWeapon.transform.SetParent(WeaponDir);
+        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.transform.localRotation = Quaternion.identity;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        // to see if the gun gets picked up
+        Debug.Log("TRIGGER: " + other.name);
+
+        WeaponBehavior newWeapon = other.GetComponentInParent<WeaponBehavior>();
+
+        if (newWeapon != null)
+        {
+            Debug.Log("WEAPON FOUND: " + newWeapon.name);
+            EquipWeapon(newWeapon);
         }
     }
 }
