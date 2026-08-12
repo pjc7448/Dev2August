@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IHeal
 {
     [SerializeField] CharacterController controller;
 
@@ -48,14 +48,17 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVelocity.y = 0;
         }
 
-        moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+        Vector3 cameraForward = Vector3.forward;
+        Vector3 cameraRight = Vector3.right;
+
+        moveDirection = Input.GetAxisRaw("Horizontal") * cameraRight + Input.GetAxisRaw("Vertical") * cameraForward;
         controller.Move(moveDirection.normalized * Speed * Time.deltaTime);
 
         Jump();
         controller.Move(playerVelocity * Time.deltaTime);
         playerVelocity.y -= gravity * Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             Weapon.Shoot();
         }
@@ -99,6 +102,12 @@ public class PlayerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+
+        Heal heal = GetComponent<Heal>();
+        if(heal != null)
+        {
+            heal.damageTaken();
+        }
         UpdatePlayerUI();
         StartCoroutine(FlashDamage());
 
@@ -106,6 +115,20 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             GameManager.Instance.youLose();
         }
+    }
+
+    public void heal(int amount)
+    {
+        HP += amount;
+        if(HP > HPOriginal)
+        {
+            HP = HPOriginal;
+        }
+        UpdatePlayerUI();
+    }
+    public bool isFullHealth()
+    {
+        return HP >= HPOriginal;
     }
 }
 

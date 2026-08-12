@@ -8,8 +8,6 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] Transform ShootPosition;
     [SerializeField] float ShootRate;
     [SerializeField] int BulletCount;
-    [SerializeField] float BulletDecay;
-    [SerializeField] float BulletSpeed;
     [SerializeField] float BulletSpread;
 
     float ShootTimer;
@@ -25,7 +23,7 @@ public class WeaponBehavior : MonoBehaviour
         if (ShootTimer >= ShootRate)
         {
             // this is so weapons shoot at the players retical, this will be changed when we implement the top down camera (or removed)
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             Vector3 CrossHair;
 
@@ -38,7 +36,9 @@ public class WeaponBehavior : MonoBehaviour
                 CrossHair = ray.origin + ray.direction * 1000f;
             }
 
-            Vector3 direction = (CrossHair - ShootPosition.position).normalized;
+            Vector3 direction = CrossHair - ShootPosition.position;
+            direction.y = 0;
+            direction.Normalize();
             ShootTimer = 0; // reset the timer
 
             for (int i = 0; i < BulletCount; i++)
@@ -53,12 +53,6 @@ public class WeaponBehavior : MonoBehaviour
                 Quaternion bulletRotation = Quaternion.LookRotation(spreadDirection);
 
                 GameObject GunBullet = Instantiate(Bullet, ShootPosition.position, bulletRotation);
-
-                Rigidbody rb = GunBullet.GetComponent<Rigidbody>();
-
-                rb.linearVelocity = GunBullet.transform.forward * BulletSpeed;
-
-                Destroy(GunBullet, BulletDecay);
             }
         }
     }

@@ -527,6 +527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8112398099157542644}
   - component: {fileID: 3840864730401114559}
+  - component: {fileID: 4715435174377784709}
   - component: {fileID: 4450764526114675942}
   - component: {fileID: 6986632289804971165}
   - component: {fileID: 6515721808002073225}
@@ -579,6 +580,25 @@ MonoBehaviour:
   GunRotationSpeed: 10
   BulletSpeed: 20
   BulletDecay: 3
+--- !u!114 &4715435174377784709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791680660320909169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a811983a300a30748b1be6dd6fe9863a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damage
+  type: 0
+  rb: {fileID: 7316612942746958596, guid: 2317a5252ae69844bb2d778262012b8d, type: 3}
+  damageAmount: 0
+  damageRate: 0
+  bulletSpeed: 0
+  bulletDestroyTime: 0
+  hitEffect: {fileID: 0}
 --- !u!195 &4450764526114675942
 NavMeshAgent:
   m_ObjectHideFlags: 0
