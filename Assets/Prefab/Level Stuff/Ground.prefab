@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1435909841499708184}
   - component: {fileID: 8459260496856080487}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Pink ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
