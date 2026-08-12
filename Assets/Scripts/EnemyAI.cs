@@ -20,6 +20,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform ShootPosition;
     [SerializeField] float ShootRate;
     [SerializeField] int GunRotationSpeed;
+    [SerializeField] float BulletSpeed;
+    [SerializeField] float BulletDecay;
 
     Color colorOrig;
 
@@ -70,6 +72,21 @@ public class EnemyAI : MonoBehaviour, IDamage
         GunPivot.rotation = Quaternion.Lerp(GunPivot.rotation, rot, GunRotationSpeed * Time.deltaTime);
     }
 
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
+
+        if (HP <= 0)
+        {
+            GameManager.Instance.UpdateGameGoal(-1);
+            Destroy(gameObject);
+        }
+        else
+        {
+            StartCoroutine(FlashRed());
+        }
+    }
+
     IEnumerator FlashRed()
     {
         model.material.color = Color.red;
@@ -80,7 +97,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Shoot()
     {
         ShootTimer = 0;
-        Instantiate(Bullet, ShootPosition.position, ShootPosition.rotation);
+
+        GameObject GunBullet = Instantiate(Bullet, ShootPosition.position, ShootPosition.rotation);
+
+        Rigidbody rb = GunBullet.GetComponent<Rigidbody>();
+
+        rb.linearVelocity = GunBullet.transform.forward * BulletSpeed;
+
+        Destroy(GunBullet, BulletDecay);
     }
 
     void OnTriggerEnter(Collider other)

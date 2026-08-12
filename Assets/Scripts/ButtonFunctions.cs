@@ -1,27 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttonFunctions : MonoBehaviour
+
+public class ButtonFunctions : MonoBehaviour
 {
-    public void resume()
+   public void Resume()
     {
-        gameManager.instance.stateUnpause();
+        GameManager.Instance.StateUnpaused();
     }
 
-    public void restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.stateUnpause();
+        GameManager.Instance.StateUnpaused();
     }
 
-    public void quit()
+    public void Quit()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-
-        #else
-            Application.Quit();
-
-        #endif  
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
+
+
 }

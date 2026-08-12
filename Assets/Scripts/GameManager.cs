@@ -1,27 +1,35 @@
-using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class gameManager : MonoBehaviour
+
+public class GameManager : MonoBehaviour
 {
 
-    public static gameManager instance;
+    public static GameManager Instance;
 
-    [SerializeField] GameObject menuActive;
-    [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject MenuActive;
+    [SerializeField] GameObject MenuPause;
+    [SerializeField] GameObject MenuWin;
+    [SerializeField] GameObject MenuLose;
 
     public bool isPaused;
     public GameObject player;
-    //public playerController playerScript;
+    public PlayerController playerScript;
+    public Image playerHPBar;
+    public GameObject damageFlashPanel;
+
+    float timeScaleOrig;
+
+    int GameGoalCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        instance = this;
+        Instance = this;
         player = GameObject.FindWithTag("Player");
-       // playerScript = player.GetComponent<playerController>();
-        //timeScaleOrig = Time.timeScale;
+        playerScript = player.GetComponent<PlayerController>();
+        timeScaleOrig = Time.timeScale;
+
     }
 
     // Update is called once per frame
@@ -29,34 +37,61 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if(menuActive == null)
+            if (MenuActive == null)
             {
-                statePause();
-                menuActive = menuPause;
-                menuActive.SetActive(true);
+                // pause the game
+                StatePause();
+                MenuActive = MenuPause;
+                MenuActive.SetActive(true);
+
             }
-            else if(menuActive == menuPause)
+            else if (MenuActive == MenuPause)
             {
-                stateUnpause();
+                // unpauses the game and returns to the game
+                StateUnpaused();
             }
         }
     }
 
-    public void statePause()
+    public void StatePause()
     {
         isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
     }
 
-    public void stateUnpause()
+    public void StateUnpaused()
     {
         isPaused = false;
-        //Time.timeScale = timeScaleOrig;
-        Cursor.visible = true;
+        Time.timeScale = timeScaleOrig;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
-        menuActive = null;
+        MenuActive.SetActive(false);
+        MenuActive = null;
     }
+
+    public void UpdateGameGoal(int amount)
+    {
+        GameGoalCount += amount;
+
+        // win condition check
+        if (GameGoalCount <= 0)
+        {
+            // win the game
+            StatePause();
+            MenuActive = MenuWin;
+            MenuActive.SetActive(true);
+        }
+    }
+
+    public void youLose()
+    {
+        StatePause();
+        MenuActive = MenuLose;
+        MenuActive.SetActive(true);
+    }
+
+
 }

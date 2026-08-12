@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5618750125584826778}
   - component: {fileID: 1039519348160453000}
   - component: {fileID: 8051953967700108164}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3996261401381253170}
   - component: {fileID: 2556390857802021628}
   - component: {fileID: 4693456867609756817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 1290214027996401833}
   - component: {fileID: 9135122757817023338}
   - component: {fileID: 2349622275154064224}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 4777772277700636142}
   - component: {fileID: 8616417700787183914}
   - component: {fileID: 8198325244884189140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 4270699528705787131}
   - component: {fileID: 1578237971281944949}
   - component: {fileID: 3352003681979233441}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shoot Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559942487890406157}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Head Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4446749787455840186}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,13 +527,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8112398099157542644}
   - component: {fileID: 3840864730401114559}
-  - component: {fileID: 2594677865105770384}
   - component: {fileID: 4450764526114675942}
   - component: {fileID: 6986632289804971165}
   - component: {fileID: 6515721808002073225}
   - component: {fileID: 2417267289540732642}
   - component: {fileID: 7201217918960711568}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Enemy 1.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +548,7 @@ Transform:
   m_GameObject: {fileID: 7791680660320909169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.45909, y: 1, z: 21.578205}
+  m_LocalPosition: {x: 32.069122, y: 0.87614, z: 4.9920297}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -578,25 +577,8 @@ MonoBehaviour:
   ShootPosition: {fileID: 4270699528705787131}
   ShootRate: 0.9
   GunRotationSpeed: 10
---- !u!114 &2594677865105770384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7791680660320909169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a811983a300a30748b1be6dd6fe9863a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Damage
-  type: 0
-  rb: {fileID: 0}
-  damageAmount: 0
-  damageRate: 0
-  bulletSpeed: 0
-  bulletDestroyTime: 0
-  hitEffect: {fileID: 0}
+  BulletSpeed: 20
+  BulletDecay: 3
 --- !u!195 &4450764526114675942
 NavMeshAgent:
   m_ObjectHideFlags: 0
