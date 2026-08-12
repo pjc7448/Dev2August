@@ -2,19 +2,34 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector3 offset;
 
-    [SerializeField] Transform player;
-    [SerializeField] Vector3 cameraOffset = new Vector3(0, 10, -8);
+    [Range(1,10)][SerializeField] private float zoomSpeed;
+    [Range(1f, 5f)][SerializeField] private float minZoom;
+    [Range(5f, 15f)][SerializeField] private float maxZoom;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        transform.position = player.position + cameraOffset;
-        transform.rotation = Quaternion.Euler(90, 0, 0);
+        
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (scroll != 0)
+        {
+            offset.y -= scroll * zoomSpeed;
+            offset.y = Mathf.Clamp(offset.y, minZoom, maxZoom);
+        }
+
+        transform.position = player.position + offset;
     }
 }
-
