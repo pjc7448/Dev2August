@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int GunRotationSpeed;
     [SerializeField] float BulletSpeed;
     [SerializeField] float BulletDecay;
+    [SerializeField] AudioSource ShootSound;
 
     Color colorOrig;
 
@@ -54,6 +55,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             if (ShootTimer >= ShootRate)
             {
+                ShootSound.Play();
                 Shoot();
             }
         }

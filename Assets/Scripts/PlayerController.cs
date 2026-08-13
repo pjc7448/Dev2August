@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+// DUe to repo issues with our team, Code was overwritten with code from the  lectures 
+// Moteak did made his own Playercontroller different from the lecture but was lost on commits
+// The credit for the Base code for the player controller (not dash or Ideal functions/ties) goes to Moteak, as its late into the project to incoprate
+// exact work due to potential refernce issues and Conflictions.
+
 public class PlayerController : MonoBehaviour, IDamage, IHeal
 {
     [SerializeField] CharacterController controller;
