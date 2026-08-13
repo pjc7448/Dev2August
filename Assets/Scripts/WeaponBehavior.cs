@@ -11,6 +11,7 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] float BulletDecay;
     [SerializeField] float BulletSpeed;
     [SerializeField] float BulletSpread;
+    [SerializeField] AudioSource GunShotSound;
 
     float ShootTimer;
 
@@ -27,6 +28,13 @@ public class WeaponBehavior : MonoBehaviour
             Vector3 direction = ShootPosition.forward;
 
             ShootTimer = 0; // reset the timer
+
+            // Gun Sound effect
+            if (GunShotSound!= null)
+            {
+                GunShotSound.Play();
+            }
+
 
             for (int i = 0; i < BulletCount; i++)
             {

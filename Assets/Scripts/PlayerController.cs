@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     // The Weapon is a pickup
     [SerializeField] Transform WeaponDir;
 
-    [Range(0, 10)][SerializeField] int HP;
+    [SerializeField] AudioSource PlayerDamageSound;
+    [SerializeField] AudioSource PlayerWalkingSoud;
+    [SerializeField] AudioSource WeaponEquipSound;
+
+   [Range(0, 10)][SerializeField] int HP;
     [Range(1, 6)][SerializeField] int Speed;
     [Range(2, 5)][SerializeField] int sprintMod;
 
@@ -119,6 +123,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
 
     public void takeDamage(int amount)
     {
+      
         HP -= amount;
 
         Heal heal = GetComponent<Heal>();
@@ -128,6 +133,12 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         }
         UpdatePlayerUI();
         StartCoroutine(FlashDamage());
+
+        // Hit effect should sound off
+        if (PlayerDamageSound != null)
+        {
+            PlayerDamageSound.Play();
+        }
 
         if (HP <= 0)
         {
@@ -142,6 +153,11 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         }
 
         Weapon = newWeapon;
+
+        if (WeaponEquipSound != null)
+        {
+            WeaponEquipSound.Play();
+        }
 
         newWeapon.transform.SetParent(WeaponDir);
         newWeapon.transform.localPosition = Vector3.zero;
