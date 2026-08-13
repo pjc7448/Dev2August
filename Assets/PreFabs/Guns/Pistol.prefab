@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.986, y: 0.5, z: 22.975}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6718, y: 1.6718, z: 1.6718}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1745648770778161567}
@@ -56,9 +56,9 @@ MonoBehaviour:
   ShootPosition: {fileID: 1745648770778161567}
   ShootRate: 0.9
   BulletCount: 1
-  BulletDecay: 2
+  BulletDecay: 1
   BulletSpeed: 30
-  BulletSpread: 0.2
+  BulletSpread: 0.02
   GunShotSound: {fileID: -1117586355725425415}
 --- !u!82 &-1117586355725425415
 AudioSource:

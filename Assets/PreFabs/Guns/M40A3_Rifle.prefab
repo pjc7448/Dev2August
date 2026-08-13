@@ -173,7 +173,7 @@ Transform:
   m_GameObject: {fileID: 4558452963976649162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.358, y: 0.616, z: 19.589}
+  m_LocalPosition: {x: 11.67, y: 0.616, z: 22.84}
   m_LocalScale: {x: 2.3130088, y: 2.3130088, z: 2.3130088}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -198,7 +198,7 @@ MonoBehaviour:
   ShootRate: 1
   BulletCount: 1
   BulletDecay: 4
-  BulletSpeed: 30
+  BulletSpeed: 70
   BulletSpread: 0
   GunShotSound: {fileID: -6113710923667603980}
 --- !u!33 &8779012180624080031

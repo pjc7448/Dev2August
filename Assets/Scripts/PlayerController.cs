@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
 
     public void UpdatePlayerUI()
     {
+        GameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOriginal;
     }
 
     public void takeDamage(int amount)

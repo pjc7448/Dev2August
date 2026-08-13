@@ -572,7 +572,7 @@ MonoBehaviour:
   model: {fileID: 6515721808002073225}
   HP: 5
   FaceTargetSpeed: 5
-  Bullet: {fileID: 5042787213808573991, guid: 6c61f2e5878da0f4db7f68893e42ee6c, type: 3}
+  Bullet: {fileID: 5042787213808573991, guid: 137122204eec26042aaf0e7ed9803a71, type: 3}
   GunPivot: {fileID: 4446749787455840186}
   ShootPosition: {fileID: 4270699528705787131}
   ShootRate: 0.9
@@ -593,7 +593,7 @@ NavMeshAgent:
   m_Acceleration: 16
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 3
+  m_StoppingDistance: 15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

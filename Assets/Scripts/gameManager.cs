@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject MenuWin;
     [SerializeField] GameObject MenuLose;
 
+    [SerializeField] TMP_Text EnemyCount;
+
     public bool isPaused;
     public GameObject player;
     public PlayerController playerScript;
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     float timeScaleOrig;
 
+    
     int GameGoalCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,6 +79,8 @@ public class GameManager : MonoBehaviour
     public void UpdateGameGoal(int amount)
     {
         GameGoalCount += amount;
+
+        EnemyCount.text = "Enemies Left: " + GameGoalCount;
 
         // win condition check
         if (GameGoalCount <= 0)
