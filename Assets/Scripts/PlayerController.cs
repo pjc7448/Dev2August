@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
     [SerializeField] float dashCooldown;
+
+    [SerializeField] GameObject grenade;
+    [SerializeField] Transform throwPosition;
+    [SerializeField] float throwForce;
     float dashTimer;
     bool isDashing;
 
@@ -52,6 +56,12 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         movement();
         Sprint();
         FaceMouse();
+
+        if(Input.GetButtonDown("Throw"))
+        {
+            Throw();
+        }
+        
 
         dashTimer += Time.deltaTime;
         if (Input.GetButtonDown("Dash") && dashTimer >= dashCooldown && !isDashing)
@@ -219,6 +229,22 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
             {
                 transform.rotation = Quaternion.LookRotation(Direction);
             }
+        }
+    }
+    void Throw()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit mouse, 1000f))
+        {
+            Vector3 direction = mouse.point - throwPosition.transform.position;
+            direction.Normalize();
+
+            GameObject Grenade = Instantiate(grenade, throwPosition.transform.position, Quaternion.identity);
+
+            Rigidbody rb = Grenade.GetComponent<Rigidbody>(); ;
+
+            rb.linearVelocity = direction * throwForce;
         }
     }
 }
