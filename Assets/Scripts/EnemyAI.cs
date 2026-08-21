@@ -83,14 +83,19 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Shoot()
     {
-
         ShootTimer = 0;
 
-        Instantiate(
+        GameObject bullet = Instantiate(
             Bullet,
             ShootPosition.position,
             ShootPosition.rotation
         );
+
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+        rb.linearVelocity = bullet.transform.forward * BulletSpeed;
+
+        Destroy(bullet, BulletDecay);
     }
 
     void OnTriggerEnter(Collider other)

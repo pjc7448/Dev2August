@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 294407566282179176}
   - component: {fileID: 2335139039291560447}
   - component: {fileID: -1117586355725425415}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
-  Bullet: {fileID: 5042787213808573991, guid: 4ee50271651d41e409e1b553ee66aba4, type: 3}
+  Bullet: {fileID: 5042787213808573991, guid: 2a7e47434fa7afd42aa298ba1c65a0a8, type: 3}
   ShootPosition: {fileID: 1745648770778161567}
-  ShootRate: 0.9
+  ShootRate: 0.45
   BulletCount: 1
   BulletDecay: 1
   BulletSpeed: 50
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 1576961611657933967}
   - component: {fileID: 3277053603099062851}
   - component: {fileID: 3798664836229063583}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: PickupRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8760297433954716228}
   - component: {fileID: 9054628664992359195}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4940227390782772782}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: WeaponPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
