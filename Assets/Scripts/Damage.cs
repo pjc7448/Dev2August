@@ -6,11 +6,9 @@ public class Damage : MonoBehaviour
 
     enum DamageType { Bullet, Stationary, DOT };
     [SerializeField] DamageType type;
-    [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
-    [SerializeField] int bulletSpeed;
     [SerializeField] int bulletDestroyTime;
     [SerializeField] ParticleSystem hitEffect;
 
@@ -19,10 +17,8 @@ public class Damage : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        if(type == DamageType.Bullet)
+        if (type == DamageType.Bullet)
         {
-            rb.linearVelocity = transform.forward * bulletSpeed;
             Destroy(gameObject, bulletDestroyTime);
         }
     }

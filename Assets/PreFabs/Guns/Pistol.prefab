@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
-  Bullet: {fileID: 5042787213808573991, guid: aad5e3ca18f37734c910eb058ed31604, type: 3}
+  Bullet: {fileID: 5042787213808573991, guid: 4ee50271651d41e409e1b553ee66aba4, type: 3}
   ShootPosition: {fileID: 1745648770778161567}
   ShootRate: 0.9
   BulletCount: 1
   BulletDecay: 1
-  BulletSpeed: 30
+  BulletSpeed: 50
   BulletSpread: 0.02
   GunShotSound: {fileID: -1117586355725425415}
 --- !u!82 &-1117586355725425415

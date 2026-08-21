@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2532067042067583888}
   - component: {fileID: 1807062651520766999}
   m_Layer: 9
-  m_Name: Player Bullet
+  m_Name: SMG Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,10 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   type: 0
-  rb: {fileID: 1807062651520766999}
-  damageAmount: 1
+  damageAmount: 2
   damageRate: 0.8
-  bulletSpeed: 80
   bulletDestroyTime: 3
   hitEffect: {fileID: 0}
 --- !u!135 &4341753595737335658

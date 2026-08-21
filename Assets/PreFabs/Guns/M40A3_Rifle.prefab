@@ -172,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4558452963976649162}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.67, y: 0.616, z: 22.84}
   m_LocalScale: {x: 2.3130088, y: 2.3130088, z: 2.3130088}
   m_ConstrainProportionsScale: 0
@@ -193,12 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
-  Bullet: {fileID: 5042787213808573991, guid: aad5e3ca18f37734c910eb058ed31604, type: 3}
+  Bullet: {fileID: 5042787213808573991, guid: b0d29c4cf9546ed45b8eefe854492323, type: 3}
   ShootPosition: {fileID: 775267811551887911}
   ShootRate: 1
   BulletCount: 1
   BulletDecay: 4
-  BulletSpeed: 70
+  BulletSpeed: 120
   BulletSpread: 0
   GunShotSound: {fileID: -6113710923667603980}
 --- !u!33 &8779012180624080031
