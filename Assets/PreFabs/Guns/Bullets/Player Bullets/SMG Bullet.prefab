@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   type: 0
-  damageAmount: 2
+  damageAmount: 1
   damageRate: 0.8
   bulletDestroyTime: 3
   hitEffect: {fileID: 0}

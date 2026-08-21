@@ -4,6 +4,7 @@ public class WeaponBehavior : MonoBehaviour
 {
 
     [Header("Weapon Settings")]
+    [SerializeField] string WeaponName;
     [SerializeField] GameObject Bullet;
     [SerializeField] Transform ShootPosition;
     [SerializeField] float ShootRate;
@@ -12,6 +13,7 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] float BulletSpeed;
     [SerializeField] float BulletSpread;
     [SerializeField] AudioSource GunShotSound;
+
 
     float ShootTimer;
 
@@ -56,5 +58,10 @@ public class WeaponBehavior : MonoBehaviour
                 Destroy(GunBullet, BulletDecay);
             }
         }
+    }
+
+    public string GetWeaponName()
+    {
+        return WeaponName;
     }
 }

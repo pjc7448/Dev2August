@@ -418,10 +418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
+  WeaponName: ShotGun
   Bullet: {fileID: 5042787213808573991, guid: a614cd8b23db3ac49a155570885057a6, type: 3}
   ShootPosition: {fileID: 5433725818293026910}
   ShootRate: 1
-  BulletCount: 6
+  BulletCount: 7
   BulletDecay: 1.3
   BulletSpeed: 60
   BulletSpread: 0.2

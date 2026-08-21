@@ -646,6 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
+  WeaponName: SMG
   Bullet: {fileID: 5042787213808573991, guid: 2e35bb4b8cd011043a2f8127a1f254b8, type: 3}
   ShootPosition: {fileID: 1046419119268423327}
   ShootRate: 0.15

@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         {
             EquipWeapon(PickupRange);
             PickupRange = null;
+            GameManager.Instance.PickUpPrompt.gameObject.SetActive(false);
         }
     }
 
@@ -204,6 +205,8 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         if (newWeapon != null)
         {
             PickupRange = newWeapon;
+            GameManager.Instance.PickUpPrompt.text = "Equip: " + newWeapon.GetWeaponName();
+            GameManager.Instance.PickUpPrompt.gameObject.SetActive(true);
         }
     }
 
@@ -215,6 +218,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         if (newWeapon != null && PickupRange == newWeapon)
         {
             PickupRange = null;
+            GameManager.Instance.PickUpPrompt.gameObject.SetActive(false);
         }
     }
 

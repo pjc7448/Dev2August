@@ -571,7 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   agent: {fileID: 4450764526114675942}
   model: {fileID: 6515721808002073225}
-  HP: 5
+  HP: 10
   FaceTargetSpeed: 5
   Bullet: {fileID: 5042787213808573991, guid: 137122204eec26042aaf0e7ed9803a71, type: 3}
   GunPivot: {fileID: 4446749787455840186}

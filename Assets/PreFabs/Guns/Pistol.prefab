@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442e94b08cf35a843a30d356e2ea00bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBehavior
+  WeaponName: Pistol
   Bullet: {fileID: 5042787213808573991, guid: 2a7e47434fa7afd42aa298ba1c65a0a8, type: 3}
   ShootPosition: {fileID: 1745648770778161567}
   ShootRate: 0.45

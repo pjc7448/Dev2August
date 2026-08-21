@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
     public Image playerHPBar;
     public GameObject damageFlashPanel;
+    public TMP_Text PickUpPrompt;
 
     float timeScaleOrig;
 
