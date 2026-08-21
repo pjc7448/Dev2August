@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     [SerializeField] WeaponBehavior Weapon;
     // The Weapon is a pickup
     [SerializeField] Transform WeaponDir;
+    WeaponBehavior PickupRange;
+
 
     [SerializeField] AudioSource PlayerDamageSound;
     [SerializeField] AudioSource PlayerWalkingSoud;
@@ -67,6 +69,13 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
         if (Input.GetButtonDown("Dash") && dashTimer >= dashCooldown && !isDashing)
         {
             StartCoroutine(Dash());
+        }
+
+        // E is now used to pickup weapons
+        if (PickupRange != null && Input.GetKeyDown(KeyCode.E))
+        {
+            EquipWeapon(PickupRange);
+            PickupRange = null;
         }
     }
 
@@ -194,7 +203,18 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
 
         if (newWeapon != null)
         {
-            EquipWeapon(newWeapon);
+            PickupRange = newWeapon;
+        }
+    }
+
+    // this is sets the pickup to null to prevent the gun from being remebered (can pickup after leaving thr trigger range)
+    private void OnTriggerExit(Collider other)
+    {
+        WeaponBehavior newWeapon = other.GetComponentInParent<WeaponBehavior>();
+
+        if (newWeapon != null && PickupRange == newWeapon)
+        {
+            PickupRange = null;
         }
     }
 
