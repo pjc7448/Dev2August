@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject damageFlashPanel;
     public TMP_Text PickUpPrompt;
+    public GameObject spawnPosition;
+    public GameObject checkPointPopup;
 
     float timeScaleOrig;
 
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
+        spawnPosition = GameObject.FindWithTag("Player Spawn Position");
 
     }
 

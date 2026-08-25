@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 // DUe to repo issues with our team, Code was overwritten with code from the  lectures 
 // Moteak did made his own Playercontroller different from the lecture but was lost on commits
 // The credit for the Base code for the player controller (not dash or Ideal functions/ties) goes to Moteak, as its late into the project to incoprate
@@ -8,20 +9,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour, IDamage, IHeal
 {
+    [Header("Components")]
     [SerializeField] CharacterController controller;
+    [SerializeField] LayerMask IgnoreLayer;
 
-    // The players Weapon
+    [Header("Gun")]
     [SerializeField] WeaponBehavior Weapon;
     // The Weapon is a pickup
     [SerializeField] Transform WeaponDir;
     WeaponBehavior PickupRange;
 
-
+    [Header("Player Audio")]
     [SerializeField] AudioSource PlayerDamageSound;
     [SerializeField] AudioSource PlayerWalkingSoud;
     [SerializeField] AudioSource WeaponEquipSound;
 
-   [Range(0, 10)][SerializeField] int HP;
+    [Header("Player Stats")]
+    [Range(0, 10)][SerializeField] int HP;
     [Range(1, 6)][SerializeField] int Speed;
     [Range(2, 5)][SerializeField] int sprintMod;
 
@@ -29,13 +33,14 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     [SerializeField] float dashDuration;
     [SerializeField] float dashCooldown;
 
+    [Header("Player Ability")]
     [SerializeField] GameObject grenade;
     [SerializeField] Transform throwPosition;
     [SerializeField] float throwForce;
     float dashTimer;
     bool isDashing;
 
-    [SerializeField] LayerMask IgnoreLayer;
+   
 
 
     int HPOriginal;
@@ -270,6 +275,11 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
 
             rb.linearVelocity = direction * throwForce;
         }
+    }
+
+    public void SpawnPlayer()
+    {
+        controller.transform.position = GameManager.Instance.spawnPosition.transform.position;
     }
 }
 
