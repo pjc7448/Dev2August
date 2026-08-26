@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
 
         controller.Move(playerVelocity * Time.deltaTime);
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && Weapon != null)
         {
             Weapon.Shoot();
         }
@@ -280,6 +280,8 @@ public class PlayerController : MonoBehaviour, IDamage, IHeal
     public void SpawnPlayer()
     {
         controller.transform.position = GameManager.Instance.spawnPosition.transform.position;
+        HP = HPOriginal;
+        UpdatePlayerUI();
     }
 }
 

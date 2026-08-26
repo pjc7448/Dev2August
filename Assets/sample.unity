@@ -566,6 +566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1569804272006217321, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
+      propertyPath: m_TagString
+      value: Player Spawn Position
+      objectReference: {fileID: 0}
     - target: {fileID: 2849364678663632910, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -643,12 +647,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6118280550196621483, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -116
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118280550196621483, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -65.3
+      value: -66.4
       objectReference: {fileID: 0}
     - target: {fileID: 6118280550196621483, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 49
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 8064159262869852568, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
       propertyPath: m_Pivot.x
@@ -728,6 +736,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064159262869852568, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905603953897548995, guid: 341cf4cc90c2d4844a992a2ee5f4f258, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1098,6 +1110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint 1.0
       objectReference: {fileID: 0}
+    - target: {fileID: 3592205702293815862, guid: 20363e2c59793c542a591c679855fa7d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5320378725145273663, guid: 20363e2c59793c542a591c679855fa7d, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -1108,7 +1124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5320378725145273663, guid: 20363e2c59793c542a591c679855fa7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 5320378725145273663, guid: 20363e2c59793c542a591c679855fa7d, type: 3}
       propertyPath: m_LocalPosition.z
