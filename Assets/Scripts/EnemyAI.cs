@@ -11,7 +11,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("Stats")]
     [Range(0, 10)][SerializeField] int HP;
     [SerializeField] int FaceTargetSpeed;
-
+    [SerializeField] float viewAngle;
+    [SerializeField] float viewDistance;
+    public float ViewAngle => viewAngle;
+    public float ViewDistance => viewDistance;
 
 
     [Header("Weapons")]
@@ -30,7 +33,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     float ShootTimer;
 
-    bool PlayerInTrigger;
 
 
 
@@ -45,7 +47,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Update()
     { 
 
-        if (PlayerInTrigger)
+        if (canSeePlayer())
         {
             agent.SetDestination(GameManager.Instance.player.transform.position);
             ShootTimer += Time.deltaTime;
@@ -98,22 +100,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         Destroy(bullet, BulletDecay);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerInTrigger = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerInTrigger = false;
-        }
-    }
-
     public void takeDamage(int amount)
     {
 
@@ -128,5 +114,35 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             StartCoroutine(FlashRed());
         }
+    }
+
+    bool canSeePlayer()
+    {
+        PlayerDir = GameManager.Instance.player.transform.position - transform.position;
+
+        PlayerDir.y = 0;
+
+        float distance = PlayerDir.magnitude;
+
+        if(distance > viewDistance)
+        {
+            return false;
+        }
+        float angleToPlayer = Vector3.Angle(transform.forward, PlayerDir);
+
+        if(angleToPlayer > (viewAngle / 2))
+        {
+            return false;
+        }
+
+        if(Physics.Raycast(transform.position, PlayerDir, out RaycastHit hit, viewDistance))
+        {
+            if(hit.transform.CompareTag("Player"))
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }
