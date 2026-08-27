@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     void Start()
     {
         targetRotation = Quaternion.Euler(closedRotation);
-        transform.localRotation = targetRotation;
+        //transform.localRotation = targetRotation;
     }
 
     void Update()
@@ -44,4 +44,5 @@ public class Door : MonoBehaviour
         targetRotation = Quaternion.Euler(closedRotation);
         isDoorOpen = false;
     }
+
 }
